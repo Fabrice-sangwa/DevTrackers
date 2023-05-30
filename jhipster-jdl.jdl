@@ -1,0 +1,106 @@
+entity Notification {
+	description String
+    date Date
+    title String
+    project Project
+    sendee Member
+}
+
+entity Problem {
+	author Member
+    priority Priority
+    description String
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Project {
+	name String
+	objectif String
+	delay String
+	priority Priority
+    problem Problem
+    task Task
+}
+
+entity Task {
+	name String required
+    member Member
+    description String 
+    state State
+}
+
+/**
+ * The Employee entity.
+ */
+ entity Person {
+	/**
+	* The firstname attribute.
+	*/
+	firstName String
+	lastName String
+	email String
+	phoneNumber String
+	birthDate Instant
+    role String 
+}
+
+entity Team {
+	name String
+	member Member
+}
+
+entity Message {
+	author Member
+    content String
+	date Instant
+	sendee Language
+}
+
+entity User{
+	passWord String
+}
+
+entity Member{
+	name String
+}
+
+enum Priority{
+	URGENT, MOYEN, BAS
+}
+
+enum State {
+	EN COURS, EN PAUSE, A FAIRE, TERMINE
+}
+
+
+
+entity Dashboard{
+	member Member
+    project Project
+}
+
+relationship OneToOne {
+	User to Person
+    Member to User
+    Message{author} to Member{id}
+  
+}
+
+relationship OneToMany {
+	Project to Notification{project} 
+    Member to Team{member}
+  	Message{sendee} to Member{name}
+    Dashboard{Project(id)} to Project 
+    Project{task} to Task
+    Project{problem} to Problem
+    Problem{author} to User
+    
+}
+
+relationship ManyToMany {
+	User to Task{Member} 
+    
+    
+}
+
