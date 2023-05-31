@@ -1,106 +1,86 @@
-entity Notification {
-	description String
-    date Date
-    title String
-    project Project
-    sendee Member
+application {
+    config {
+        baseName DevTrackers
+        applicationType monolith
+        authenticationType jwt
+        clientFramework react
+        packageName com.esisalama
+        serverPort 9999
+    }
+    entities *
+    dto * with mapstruct
+}
+
+entity Project {
+    name String
+    objective String
+    delay String
+    resources String
+    version String
+}
+
+
+
+entity Task {
+    name String required
+    description String
+    priority Priority
+    state State
+
 }
 
 entity Problem {
-	author Member
-    priority Priority
     description String
-}
-
-// an ignored comment
-/** not an ignored comment */
-entity Project {
-	name String
-	objectif String
-	delay String
-	priority Priority
-    problem Problem
-    task Task
-}
-
-entity Task {
-	name String required
-    member Member
-    description String 
     state State
+    priority Priority
 }
 
-/**
- * The Employee entity.
- */
- entity Person {
-	/**
-	* The firstname attribute.
-	*/
-	firstName String
-	lastName String
-	email String
-	phoneNumber String
-	birthDate Instant
-    role String 
+
+entity User {
+    firstName String
+    lastName String
+    email String
+    phoneNumber String
+    birthDate Instant
+    role String
+    password String
 }
 
 entity Team {
-	name String
-	member Member
+    name String
 }
 
 entity Message {
-	author Member
     content String
-	date Instant
-	sendee Language
+    date LocalDate
 }
 
-entity User{
-	passWord String
-}
 
-entity Member{
-	name String
-}
-
-enum Priority{
-	URGENT, MOYEN, BAS
+enum Priority {
+    URGENT, MOYEN, BAS
 }
 
 enum State {
-	EN COURS, EN PAUSE, A FAIRE, TERMINE
+    EN_COURS, EN_PAUSE, A_FAIRE, TERMINE
+}
+
+entity Dashboard {
+
 }
 
 
-
-entity Dashboard{
-	member Member
-    project Project
-}
-
-relationship OneToOne {
-	User to Person
-    Member to User
-    Message{author} to Member{id}
-  
-}
 
 relationship OneToMany {
-	Project to Notification{project} 
-    Member to Team{member}
-  	Message{sendee} to Member{name}
-    Dashboard{Project(id)} to Project 
-    Project{task} to Task
-    Project{problem} to Problem
-    Problem{author} to User
-    
+    Project{tasks} to Task
+    Project{problems} to Problem
+    Dashboard{projects} to Project
 }
 
 relationship ManyToMany {
-	User to Task{Member} 
-    
-    
+    Task{assignedUsers} to User{skipUserManagement}
+  
+    Team{users} to User{skipUserManagement}
+    Task{users} to User{skipUserManagement}
+    Message{sendee} to User{skipUserManagement}
+    Problem{users} to User{skipUserManagement}
 }
-

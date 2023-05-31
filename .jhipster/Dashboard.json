@@ -1,0 +1,22 @@
+{
+  "applications": ["DevTrackers"],
+  "changelogDate": "20230531095409",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "dashboard",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Dashboard",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "project",
+      "otherEntityRelationshipName": "dashboard",
+      "relationshipName": "projects",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

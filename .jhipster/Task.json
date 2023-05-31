@@ -1,0 +1,56 @@
+{
+  "applications": ["DevTrackers"],
+  "changelogDate": "20230531095009",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "task",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "priority",
+      "fieldType": "Priority",
+      "fieldValues": "URGENT,MOYEN,BAS"
+    },
+    {
+      "fieldName": "state",
+      "fieldType": "State",
+      "fieldValues": "EN_COURS,EN_PAUSE,A_FAIRE,TERMINE"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Task",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "skipUserManagement",
+      "ownerSide": true,
+      "relationshipName": "assignedUsers",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "skipUserManagement",
+      "ownerSide": true,
+      "relationshipName": "users",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "project",
+      "otherEntityRelationshipName": "tasks",
+      "relationshipName": "project",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

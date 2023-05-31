@@ -1,0 +1,55 @@
+{
+  "applications": ["DevTrackers"],
+  "changelogDate": "20230531094909",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "project",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "objective",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "delay",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "resources",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "version",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Project",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "task",
+      "otherEntityRelationshipName": "project",
+      "relationshipName": "tasks",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "problem",
+      "otherEntityRelationshipName": "project",
+      "relationshipName": "problems",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "dashboard",
+      "otherEntityRelationshipName": "projects",
+      "relationshipName": "dashboard",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

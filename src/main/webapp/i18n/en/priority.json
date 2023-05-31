@@ -1,0 +1,10 @@
+{
+  "devTrackersApp": {
+    "Priority": {
+      "null": "",
+      "URGENT": "URGENT",
+      "MOYEN": "MOYEN",
+      "BAS": "BAS"
+    }
+  }
+}
